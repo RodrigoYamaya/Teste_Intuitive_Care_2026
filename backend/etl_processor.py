@@ -9,13 +9,13 @@ class ETLProcessor:
     nesse classe temos que comprir alguns dos requisitos? etapas(1.2, e 1.3)
 
     1)concluimos o download dos arquivos dos 3 trimestres(done)
-    2)vamos extrair os arquivos zip que instalamos na classe "ans_download" no  automaticamnete()
-    4)apos extarir esses arquivos vamos identificar e processar os arquivos com os dados de "DESPESAS COM EVENTOS/SINISTRO.()
-    5) apos concluir com os dados etapas anteriores iremos criar um unico arquivo csv.()
-    6) continuação da anterior  apos criação desse csv, deve conter as sequintes colunas(CNPJ,RAZAOSOCIAL,TRIMESTRE,ANO,VALORDESPESAS) ()
-    7)ultima etapa e passar um pente fino eliminando problemas nos CNPJS duplicados , valores zerados ou negativos e trimestre com formatos diferentes. ()
+    2)vamos extrair os arquivos zip que instalamos na classe "ans_download" no  automaticamnete(done)
+    4)apos extarir esses arquivos vamos identificar e processar os arquivos com os dados de "DESPESAS COM EVENTOS/SINISTRO.(done)
+    5) apos concluir com os dados etapas anteriores iremos criar um unico arquivo csv.(done)
+    6) continuação da anterior  apos criação desse csv, deve conter as sequintes colunas(CNPJ,RAZAOSOCIAL,TRIMESTRE,ANO,VALORDESPESAS) (done)
+    7)ultima etapa e passar um pente fino eliminando problemas nos CNPJS duplicados , valores zerados ou negativos e trimestre com formatos diferentes. (done)
     8)Apos conclusao justificar cada tipo de inconsistencia da etapa anterior.
-    9)ULTIMA etapa final e consolidar em um arquivo csv final zip com codenome: consolidado_despesas.zip.()
+    9)ULTIMA etapa final e consolidar em um arquivo csv final zip com codenome: consolidado_despesas.zip.(done)
     """
 
     # vamos Definir  os caminhos  para garantir que funcione em quaisquer computador
