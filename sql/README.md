@@ -1,4 +1,4 @@
-# 📊 Modelagem, ETL e Análise de Dados de Operadoras
+#Modelagem, ETL e Análise de Dados de Operadoras
 
 ## 3.2 Modelagem e Estrutura do Banco (DDL)
 

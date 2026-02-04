@@ -52,17 +52,15 @@ def init_database():
     try:
         print("lendo CSVs...")
 
-        # Lendo Detalhado (Tem CNPJ, mas não tem UF)
+        # aki Ler Detalhado (Tem CNPJ, mas não tem UF)
         df_detalhes = pd.read_csv(OUTPUTS_DIR / "consolidado_despesas.csv", sep=";", encoding="utf-8")
-        # Correção de vírgula se necessário
         if df_detalhes['valor'].dtype == 'object':
             df_detalhes['valor'] = df_detalhes['valor'].str.replace(',', '.').astype(float)
 
-        # Lendo Agregado (Tem UF, mas não tem CNPJ)
+        # ler o Agregado (Tem UF, mas não tem CNPJ)
         df_agregado = pd.read_csv(OUTPUTS_DIR / "despesas_agregadas.csv", sep=";", encoding="utf-8")
 
-        # --- PASSO 2: Reconstruir Tabela OPERADORAS (O Pulo do Gato) ---
-        print("🔧 Reconstruindo Tabela de Operadoras (Merge)...")
+        print("Reconstruindo Tabela de Operadoras")
 
         # Pega CNPJ e Razão Social unicos do detalhado
         df_base_ops = df_detalhes[['operadora_cnpj', 'razao_social']].drop_duplicates(subset=['operadora_cnpj']).copy()
@@ -84,21 +82,18 @@ def init_database():
 
         # --- PASSO 3: Salvar DESPESAS DETALHADAS ---
         print("Salvando Despesas Detalhadas...")
-        # Usa as colunas exatas que vimos no log: 'operadora_cnpj', 'ano', 'trimestre', 'valor'
         df_save_detalhes = df_detalhes[['operadora_cnpj', 'ano', 'trimestre', 'valor']].copy()
         df_save_detalhes.to_sql('despesas_detalhadas', conn, if_exists='append', index=False)
         print(f"Despesas detalhadas salvas: {len(df_save_detalhes)}")
 
         # --- PASSO 4: Salvar DADOS AGREGADOS ---
         print("Salvando Dados Agregados...")
-        # O agregado original não tem CNPJ, então vamos adicionar o CNPJ recuperado nele
         df_mart = pd.merge(df_agregado, df_base_ops, on='razao_social', how='left')
 
-        # Renomeia para o banco
+        # Renomeia para o banco de dados
         rename_map = {
             'UF': 'uf',
             'valor_total_despesas': 'valor_total_despesas'
-            # Se colunas estiverem com nomes diferentes, o pandas avisa, mas pelo seu log parece ok
         }
         df_mart.rename(columns=rename_map, inplace=True)
 
