@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99c034bd-eceb-4b0a-a0ca-c55d50044978" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/data_transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etl/init_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/queries_create_tables.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/query_1.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/query_2.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/query_3.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/etl_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/etl_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teste_Rodrigo_Yamaya.zip" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/Teste_Rodrigo_Yamaya.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/etl/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ans_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/etl/ans_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/etl/data_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/etl_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/etl/etl_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consolidado_despesas.zip" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/consolidado_despesas.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +58,11 @@
     "last_opened_file_path": "D:/Projeto/IntuitiveCare"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projeto\IntuitiveCare\outputs" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="IntuitiveCare" />
