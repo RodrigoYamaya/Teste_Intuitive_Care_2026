@@ -154,7 +154,6 @@ onMounted(() => { carregarOperadoras() })
 </template>
 
 <style>
-/* Design Profissional e Limpo */
 :root { --primary: #007bff; --bg: #f8f9fa; }
 body { font-family: sans-serif; background: var(--bg); margin: 0; padding: 20px; }
 .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
@@ -162,12 +161,10 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 h1 { color: #333; margin: 0; font-size: 1.5rem; }
 input { padding: 8px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
 
-/* ESTILOS DO GRÁFICO (NOVO) */
 .chart-container { margin-bottom: 30px; padding: 15px; background: #fff; border: 1px solid #eee; border-radius: 8px; }
 .chart-wrapper { height: 200px; position: relative; }
 h3 { margin-top: 0; color: #555; font-size: 1.1rem; }
 
-/* Tabela */
 table { width: 100%; border-collapse: collapse; margin-top: 10px; }
 th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
 th { background: #eee; }
@@ -176,7 +173,6 @@ th { background: #eee; }
 .pagination button { padding: 5px 10px; cursor: pointer; }
 .pagination button:disabled { opacity: 0.5; }
 
-/* Modal */
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
 .modal { background: white; padding: 20px; border-radius: 8px; width: 500px; max-height: 80vh; overflow-y: auto; position: relative; }
 .close-btn { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 1.5rem; cursor: pointer; }
