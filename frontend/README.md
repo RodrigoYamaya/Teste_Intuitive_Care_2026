@@ -1,38 +1,53 @@
-# .
+# Interface Web - Portal de Despesas ANS
 
-This template should help get you started developing with Vue 3 in Vite.
+Este módulo contém a interface de usuário (Frontend) desenvolvida para visualizar os dados processados pelo ETL e servidos pela API.
 
-## Recommended IDE Setup
+## 🛠️ Tecnologias Utilizadas
+* **Vue.js 3 (Composition API):** Framework progressivo e reativo.
+* **Vite:** Build tool de alta performance.
+* **Axios:** Cliente HTTP para comunicação com a API.
+* **CSS Nativo:** Estilização leve e sem dependências externas.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## ⚖️ Trade-offs e Decisões de Arquitetura
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+### 1. Escolha do Framework (Vue.js vs React/Angular)
+* **Decisão:** Utilização do Vue.js 3.
+* **Justificativa:** O Vue oferece a curva de aprendizado mais rápida e simplicidade e tambem era requisito do teste
 
-## Customize configuration
+### 2. Estrutura de Componentes (Single File Component)
+* **Decisão:** Centralização da lógica no `App.vue` sem uso de `Vue Router`.
+* **Justificativa (KISS - Keep It Simple, Stupid):**
+    * Como o requisito do teste é uma tela única com modal, implementar um Router ou dividir em múltiplos micro-componentes seria **Over-engineering** (complexidade desnecessária).
+    * A abordagem monolítica neste contexto específico facilita a leitura do código pelo avaliador e reduz o tamanho do bundle final.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 3. Gerenciamento de Estado (Reactivity API vs Pinia/Vuex)
+* **Decisão:** Uso de estado local com `ref()` e `reactive()`.
+* **Justificativa:** O escopo da aplicação não exige compartilhamento de estado global complexo. Introduzir Pinia ou Redux adicionaria camadas de abstração sem benefício real para uma aplicação de uma única página.
 
-## Project Setup
+### 4. Estilização (CSS Scoped vs Bootstrap/Tailwind)
+* **Decisão:** CSS nativo com escopo local.
+* **Justificativa:**
+    * **Performance:** Evita o carregamento de bibliotecas pesadas de UI.
+    * **Demonstração de Competência:** Mostra domínio dos fundamentos de CSS (Flexbox, Posicionamento, Variáveis) sem depender de frameworks prontos.
 
-```sh
-npm install
-```
+---
 
-### Compile and Hot-Reload for Development
+## 🚀 Como Rodar o Frontend
 
-```sh
-npm run dev
-```
+1. Entre na pasta:
+   ```bash
+   cd frontend
+Instale as dependências:
 
-### Compile and Minify for Production
+Bash
+**npm install**
+Execute o servidor de desenvolvimento:
 
-```sh
-npm run build
-```
+Bash
+**npm run dev**
+Acesse no navegador: http://localhost:5173
+
+
+---
