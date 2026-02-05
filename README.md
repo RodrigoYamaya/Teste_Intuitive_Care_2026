@@ -1,6 +1,6 @@
 # Teste_Intuitive_Care_2026
 
-## 📄 Descrição do Projeto
+## Descrição do Projeto
 Este repositório contém a solução completa para todas as etapas do processo seletivo para Estágio em Back-End. O projeto foi estruturado em módulos independentes para garantir organização e escalabilidade:
 
 * **Módulos Principais:**
@@ -29,5 +29,7 @@ Durante o processamento dos dados oficiais da ANS, foram identificadas inconsist
    Para manter a integridade dos dados financeiros e não descartar informações de despesas válidas, optei pela seguinte abordagem:
    * **Razão Social:** Registrada como *"Nome não consta no CSV"*.
    * **UF:** Registrada como *NULL* (vazio).
+   * **Modalidade:** Registrada como *NÃO INFORMADO* (vazio).
+
    
    O restante dos dados segue rigorosamente as informações originais, sem alterações.

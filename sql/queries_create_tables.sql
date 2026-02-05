@@ -1,3 +1,5 @@
+SET foreign_key_checks = 0;
+
 -- 1. Tabela de Operadoras
 CREATE TABLE IF NOT EXISTS operadoras (
     registro_ans VARCHAR(20),
@@ -5,29 +7,32 @@ CREATE TABLE IF NOT EXISTS operadoras (
     razao_social VARCHAR(255),
     modalidade VARCHAR(100),
     uf VARCHAR(2)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Index para velocidade buscas por UF (pedido na regra da query 2)
-CREATE INDEX IF NOT EXISTS idx_operadoras_uf ON operadoras(uf);
+-- Nota: MySQL 8.0 suporta CREATE INDEX IF NOT EXISTS
+CREATE INDEX idx_operadoras_uf ON operadoras(uf);
 
--- 2. Tabela de Despesas
+-- 2. Tabela de Despesas Detalhadas (Fato)
 CREATE TABLE IF NOT EXISTS despesas_detalhadas (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT, -- MySQL usa AUTO_INCREMENT
     operadora_cnpj VARCHAR(14),
     ano INT NOT NULL,
     trimestre INT NOT NULL,
-    valor DECIMAL(15, 2),
+    valor DECIMAL(15, 2), -- DECIMAL para valores monetários
     data_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    -- Aki ficar "Fk" Chave Estrangeira (Relacionamento com tabela operadoras)
-    FOREIGN KEY (operadora_cnpj) REFERENCES operadoras(cnpj)
-);
+    -- Chave Estrangeira (Relacionamento com tabela operadoras)
+    CONSTRAINT fk_despesas_operadora
+        FOREIGN KEY (operadora_cnpj) REFERENCES operadoras(cnpj)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Index para velocidade na busca de despesas por operadora e tempo
-CREATE INDEX IF NOT EXISTS idx_despesas_cnpj ON despesas_detalhadas(operadora_cnpj);
-CREATE INDEX IF NOT EXISTS idx_despesas_tempo ON despesas_detalhadas(ano, trimestre);
+CREATE INDEX idx_despesas_cnpj ON despesas_detalhadas(operadora_cnpj);
+CREATE INDEX idx_despesas_tempo ON despesas_detalhadas(ano, trimestre);
 
--- 3. Tabela de Despesas Agregadas
+-- 3. Tabela de Despesas Agregadas (Analytics)
 CREATE TABLE IF NOT EXISTS despesas_agregadas (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     operadora_cnpj VARCHAR(14),
@@ -37,9 +42,10 @@ CREATE TABLE IF NOT EXISTS despesas_agregadas (
     media_despesas_trimestre DECIMAL(20, 2),
     desvio_padrao_despesas DECIMAL(20, 2),
     qtd_lancamentos INT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- PARTE 2: IMPORTAÇÃO DOS DADOS
+
+-- Importando Operadoras (A partir do Agregado para garantir consistência cadastral)
 LOAD DATA INFILE '/var/lib/mysql-files/despesas_agregadas.csv'
 INTO TABLE operadoras
 FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\n'
@@ -52,7 +58,7 @@ SET
     registro_ans = NULL,
     modalidade = 'Não Informado';
 
--- Importando Despesas
+-- Importando Despesas Detalhadas (Tratamento de vírgula para ponto)
 LOAD DATA INFILE '/var/lib/mysql-files/consolidado_despesas.csv'
 INTO TABLE despesas_detalhadas
 FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\n'
@@ -71,3 +77,6 @@ INTO TABLE despesas_agregadas
 FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (operadora_cnpj, razao_social, uf, valor_total_despesas, media_despesas_trimestre, desvio_padrao_despesas, qtd_lancamentos);
+
+-- Reabilita verificação de chaves
+SET foreign_key_checks = 1;
