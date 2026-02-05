@@ -2,7 +2,6 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-// --- 1. IMPORTAÇÕES DO GRÁFICO (Obrigatório pelo Edital) ---
 import {
   Chart as ChartJS,
   Title,
@@ -42,7 +41,6 @@ const chartData = ref({
 })
 const chartOptions = { responsive: true, maintainAspectRatio: false }
 
-// --- SUAS FUNÇÕES (INTACTAS) ---
 const carregarOperadoras = async () => {
   loading.value = true
   try {
